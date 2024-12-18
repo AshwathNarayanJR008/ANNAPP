@@ -3,6 +3,14 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import joblib
 
+try:
+    from tensorflow.keras.models import load_model
+    import tensorflow as tf
+    st.write(f"TensorFlow Version: {tf.__version__}")
+except ImportError as e:
+    st.error(f"Failed to import TensorFlow: {e}")
+    raise
+
 # Load the saved model and scaler
 model = load_model('heart_disease_model_tanh_all_layers.h5')
 scaler = joblib.load('scaler.pkl')
